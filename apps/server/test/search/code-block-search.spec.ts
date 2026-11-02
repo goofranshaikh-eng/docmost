@@ -27,7 +27,9 @@ describe('Code Block Search', () => {
   const sample = '<ACT>\n  <P_NUM>TEST</P_NUM>\n</ACT>';
 
   it('should find XML tag name P_NUM in code block', () => {
-    expectTermSearchable(pageText([codeBlock(sample)]), 'P_NUM');
+    const text = pageText([codeBlock(sample)]);
+    expectTermSearchable(text, 'P_NUM');
+    expect(text).toMatch(/< P_NUM[\s\S]*TEST/);
   });
 
   it('should find XML tag content TEST in code block', () => {
